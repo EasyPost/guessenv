@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+
+try:
+    from setuptools import setup, find_packages
+except ImportError:
+    from distutils import setup, find_packages
+
+
+setup(
+    name='guessenv',
+    version='0.1',
+    author='EasyPost OSS',
+    author_email='oss@easypost.com',
+    url='https://github.com/easypost/guessenv',
+    license='ISC',
+    packages=find_packages(exclude=['test']),
+    description='Parse Python files and look for required environment variables',
+    entry_points={
+        'console_scripts': [
+            'guessenv = guessenv.__main__:main',
+        ]
+    },
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Environment :: Console',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Intended Audience :: End Users/Desktop',
+        'Operating System :: OS Independent',
+        'License :: OSI Approved :: ISC License (ISCL)',
+    ]
+)
