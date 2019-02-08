@@ -1,5 +1,7 @@
 This is a small program which tries to guess what environment variables will be needed by other Python programs.
 
+[![Build Status](https://travis-ci.com/EasyPost/guessenv.svg?branch=master)](https://travis-ci.com/EasyPost/guessenv)
+
 ### Usage
 
 ```
