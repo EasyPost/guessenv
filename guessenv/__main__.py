@@ -66,8 +66,16 @@ def main():
             try:
                 v.parse_and_visit(f.read(), filename)
                 if args.with_optional:
-                    envvars.extend(list(zip(repeat(filename), repeat('optional'), v.optional_environment_variables)))
-                envvars.extend(list(zip(repeat(filename), repeat('required'), v.required_environment_variables)))
+                    envvars.extend(list(zip(
+                        repeat(filename),
+                        repeat('optional'),
+                        sorted(v.optional_environment_variables)
+                    )))
+                envvars.extend(list(zip(
+                    repeat(filename),
+                    repeat('required'),
+                    sorted(v.required_environment_variables)
+                )))
             except SyntaxError as e:
                 print('{filename}:{lineno} - syntax error!'.format(
                     filename=filename,

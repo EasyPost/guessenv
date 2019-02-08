@@ -25,11 +25,12 @@ class EnvVisitor(ast.NodeVisitor):
             if call.func.id == 'getenv':
                 is_getenv = True
         if is_getenv:
-            if len(call.args) >= 1:
+            if len(call.args) >= 1 and isinstance(call.args[0], ast.Str):
                 self.optional_environment_variables.add(ast.literal_eval(call.args[0]))
         elif is_environ_get:
-            if len(call.args) >= 1:
+            if len(call.args) >= 1 and isinstance(call.args[0], ast.Str):
                 self.optional_environment_variables.add(ast.literal_eval(call.args[0]))
+        self.generic_visit(call)
 
     def visit_Subscript(self, what):
         is_env_slice = False
@@ -38,5 +39,6 @@ class EnvVisitor(ast.NodeVisitor):
         elif isinstance(what.value, ast.Name) and what.value.id == 'environ':
             is_env_slice = True
         if is_env_slice:
-            if isinstance(what.slice, ast.Index):
+            if isinstance(what.slice, ast.Index) and isinstance(what.slice.value, ast.Str):
                 self.required_environment_variables.add(ast.literal_eval(what.slice.value))
+        self.generic_visit(what)
