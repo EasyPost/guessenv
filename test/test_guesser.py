@@ -21,3 +21,26 @@ def test_basic():
     '''.replace('    ', ''))
     assert e.optional_environment_variables == set(['two', 'three', 'four', 'five'])
     assert e.required_environment_variables == set(['one', 'six', 'seven'])
+
+
+def test_environ_method_call():
+    e = guesser.EnvVisitor()
+    e.parse_and_visit('''
+    import os
+
+    KEY = os.environ['foo'].strip()
+    '''.replace('    ', ''))
+    assert e.optional_environment_variables == set()
+    assert e.required_environment_variables == set(['foo'])
+
+
+def test_nested():
+    e = guesser.EnvVisitor()
+    e.parse_and_visit('''
+    import os
+
+    FOO = os.environ[os.environ['foo']]
+    BAR = os.getenv(os.getenv('bar'))
+    '''.replace('    ', ''))
+    assert e.optional_environment_variables == set(['bar'])
+    assert e.required_environment_variables == set(['foo'])
