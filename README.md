@@ -2,6 +2,8 @@ This is a small program which tries to guess what environment variables will be 
 
 [![Build Status](https://travis-ci.com/EasyPost/guessenv.svg?branch=master)](https://travis-ci.com/EasyPost/guessenv)
 
+This tool should work on Python 2.7 and Python 3.3+
+
 ### Usage
 
 ```
