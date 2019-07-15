@@ -8,7 +8,7 @@ except ImportError:
 
 setup(
     name='guessenv',
-    version='0.1',
+    version='0.2',
     author='EasyPost OSS',
     author_email='oss@easypost.com',
     url='https://github.com/easypost/guessenv',
