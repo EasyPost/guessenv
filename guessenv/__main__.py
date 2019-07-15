@@ -1,11 +1,18 @@
 import argparse
 import sys
+import io
 import os
 import os.path
 import re
 from itertools import repeat
 
 from . import guesser
+
+
+if sys.version_info < (3, 0):
+    open_function = io.open
+else:
+    open_function = open
 
 
 class _Exclude(object):
@@ -62,7 +69,7 @@ def main():
     status = 0
     for filename in filenames:
         v = guesser.EnvVisitor()
-        with open(filename, 'r', encoding='utf-8') as f:
+        with open_function(filename, 'r', encoding='utf-8') as f:
             try:
                 v.parse_and_visit(f.read(), filename)
                 if args.with_optional:
