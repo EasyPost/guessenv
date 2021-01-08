@@ -1,4 +1,5 @@
 import ast
+import sys
 
 
 class EnvVisitor(ast.NodeVisitor):
@@ -41,7 +42,8 @@ class EnvVisitor(ast.NodeVisitor):
         if is_env_slice:
             if isinstance(what.slice, ast.Index) and isinstance(what.slice.value, ast.Str):
                 self.required_environment_variables.add(ast.literal_eval(what.slice.value))
-            elif isinstance(what.slice, ast.Constant) and isinstance(what.slice.value, str):
+            elif sys.version_info > (3, 9):
                 # this was added with the new parser in 3.9
-                self.required_environment_variables.add(what.slice.value)
+                if isinstance(what.slice, ast.Constant) and isinstance(what.slice.value, str):
+                    self.required_environment_variables.add(what.slice.value)
         self.generic_visit(what)
