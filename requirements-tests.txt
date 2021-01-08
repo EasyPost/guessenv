@@ -1,0 +1,9 @@
+pytest==4.6.*
+pytest-cov==2.8.1
+# 45.0.0 removes python 2.x support
+setuptools>=42,<45
+# zipp after 0.5 tries to install its own setuptools at build time,
+# which fails on python 2.7
+zipp==0.5.*
+# 5.0.0 removes python 2.x support
+configparser<5
