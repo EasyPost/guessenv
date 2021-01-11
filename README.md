@@ -1,6 +1,6 @@
 This is a small program which tries to guess what environment variables will be needed by other Python programs.
 
-[![Build Status](https://travis-ci.com/EasyPost/guessenv.svg?branch=master)](https://travis-ci.com/EasyPost/guessenv)
+[![CI](https://github.com/EasyPost/guessenv/workflows/CI/badge.svg)](https://github.com/EasyPost/guessenv/actions?query=workflow%3ACI)
 [![PyPI version](https://badge.fury.io/py/guessenv.svg)](https://badge.fury.io/py/guessenv)
 
 This tool should work on Python 2.7 and Python 3.3+
